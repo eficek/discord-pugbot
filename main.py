@@ -44,31 +44,37 @@ async def on_message(message):
 
 
 async def connect(message, info):
-    try:
-        for user in RED_VC.members:
-            await user.send(info)     
-        for user in BLU_VC.members:
+    for user in RED_VC.members:
+        try:
             await user.send(info)
-        await message.channel.send('connect sent: ' + message.content[9:])
-    except Exception as e:
-        print(e)
-        await message.channel.send(DLPHN.mention +
-                                   ' exception occured, logged to console.')
-    return
+        except Exception as e:
+            print(e)
+            await message.channel.send(user.name + ' appears to have dms off, connect not sent')
+    for user in BLU_VC.members:
+        try:
+            await user.send(info)
+        except Exception as e:
+            print(e)
+            await message.channel.send(user.name + ' appears to have dms off, connect not sent')
+    await message.channel.send('connect sent: ' + message.content[9:])
 
 
 async def teams_to_picking(message):
-    try:
-        for user in RED_VC.members:
+    for user in RED_VC.members:
+        try:
             await user.move_to(PICKING_VC)
-        for user in BLU_VC.members:
+        except Exception as e:
+            print(e)
+            await message.channel.send(
+                DLPHN.mention + ' exception occured, logged to console.')
+    for user in BLU_VC.members:
+        try:
             await user.move_to(PICKING_VC)
-        await message.channel.send('teams moved to picking')
-    except Exception as e:
-        print(e)
-        await message.channel.send(DLPHN.mention +
-                                   ' exception occured, logged to console.')
-    return
+        except Exception as e:
+            print(e)
+            await message.channel.send(
+                DLPHN.mention + ' exception occured, logged to console.')
+    await message.channel.send('teams moved to picking')
 
 
 keep_alive()
