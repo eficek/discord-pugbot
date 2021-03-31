@@ -1,5 +1,6 @@
 import discord
 import os
+import time
 from keep_alive import keep_alive
 
 client = discord.Client()
@@ -41,14 +42,14 @@ async def on_message(message):
 async def connect(message, info):
     for user in RED_VC.members:
         try:
-            await user.send(info)
+            await user.send(info, delete_after=600)
         except Exception as e:
             print(e)
             await message.channel.send(
                 f'{user.name} appears to have dms off, connect not sent')
     for user in BLU_VC.members:
         try:
-            await user.send(info)
+            await user.send(info, delete_after = 600)
         except Exception as e:
             print(e)
             await message.channel.send(
