@@ -44,9 +44,9 @@ async def on_message(message):
             elif message.content.startswith('!bconnect'):		                # sends connect for B Pugs
                 await b_connect(message)
             elif message.content.startswith('!endapug'):			                # ends A pug
-                await teams_to_picking(message)
+                await a_teams_to_picking(message)
             elif message.content.startswith('!endbpug'):                        # ends B pug
-                await teams_to_picking_b(message)
+                await b_teams_to_picking(message)
             elif message.content.startswith(
                     '!fatkids') or message.content.startswith('!fk'):	        # sends fatkids msg
                 await post_fatkids(message)
@@ -117,7 +117,7 @@ async def b_connect(message):						# second function: sends B connect - function
 
 # a pugs
 
-async def teams_to_picking(message):					                    # third function: sends teams back to picking
+async def a_teams_to_picking(message):					                    # third function: sends a teams back to picking
     for user in RED_VC.members:
         try:
             await user.move_to(PICKING_VC)                                  # move user to channel
@@ -134,7 +134,7 @@ async def teams_to_picking(message):					                    # third function: s
 
 # b pugs endpug
 
-async def teams_to_picking_b(message):                                      
+async def b_teams_to_picking(message):                                      # fourth function: sends b teams back to picking - functionally identical to a_teams_to_picking
     for user in RED_VC_2.members:
         try:
             await user.move_to(PICKING_VC)                                  
