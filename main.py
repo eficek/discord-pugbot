@@ -3,7 +3,7 @@ import os
 from keep_alive import keep_alive
 
 client = discord.Client()
-GUILD, TEST_VC, BLU_VC, RED_VC, BLU_VC_2, RED_VC_2, PICKING_VC, ANNOUNCE, DLPHN = (None, ) * 9
+GUILD, TEST_VC, BLU_VC, RED_VC, BLU_VC_2, RED_VC_2, PICKING_VC, PICKING_VC_2, ANNOUNCE, DLPHN = (None, ) * 10
 
 
 @client.event
@@ -14,7 +14,7 @@ async def on_ready():
     # this is so ugly, i need to brush up on py
 
 
-    global GUILD, TEST_VC, BLU_VC, RED_VC, BLU_VC_2, RED_VC_2, PICKING_VC, ANNOUNCE, DLPHN
+    global GUILD, TEST_VC, BLU_VC, RED_VC, BLU_VC_2, RED_VC_2, PICKING_VC, PICKING_VC_2, ANNOUNCE, DLPHN
     GUILD = client.guilds[0]
     TEST_VC = GUILD.get_channel(658490352189046788)                 # applies channel ID's - IF A CHANNEL GETS DELETED FIX THIS
     BLU_VC = GUILD.get_channel(727398699545788457)
@@ -22,6 +22,7 @@ async def on_ready():
     BLU_VC_2 = GUILD.get_channel(819059052151439381)
     RED_VC_2 = GUILD.get_channel(819059106647375923)
     PICKING_VC = GUILD.get_channel(799692712797536296)
+    PICKING_VC_2 = GUILD.get_channel(819058981870895105)
     ANNOUNCE = GUILD.get_channel(727395194714193980)
     DLPHN = await GUILD.fetch_member(233036215610245120)
 
@@ -137,13 +138,13 @@ async def a_teams_to_picking(message):					                    # third function:
 async def b_teams_to_picking(message):                                      # fourth function: sends b teams back to picking - functionally identical to a_teams_to_picking
     for user in RED_VC_2.members:
         try:
-            await user.move_to(PICKING_VC)                                  
+            await user.move_to(PICKING_VC_2)                                  
         except Exception as e:
             print(e)
             await message.channel.send(f'failed not move {user.name}')      
     for user in BLU_VC_2.members:
         try:
-            await user.move_to(PICKING_VC)
+            await user.move_to(PICKING_VC_2)
         except Exception as e:
             print(e)
             await message.channel.send(f'failed not move {user.name}')
