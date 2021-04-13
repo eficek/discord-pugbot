@@ -1,1 +1,6 @@
 __pycache__/
+.env
+.idea/
+venv/
+static/
+templates/
