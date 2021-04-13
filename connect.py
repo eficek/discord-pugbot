@@ -1,10 +1,10 @@
 # Sends connect to members of channel 1 and channel 2
-async def send_connect(message, chan1, chan2):  # first function: sends A connect
+async def send_connect(message, team1, team2):  # first function: sends A connect
     command = message.content.split()  # splits connect msg into array
     if len(command) == 3:
         # command is in the format '!connect ip password'
         ip, password = command[1], command[2]
-        users = chan1.members + chan2.members
+        users = team1.members + team2.members
 
         # Sends DM to all users
         for user in users:
