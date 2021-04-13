@@ -21,5 +21,5 @@ async def send_connect(message, red, blu):						                              # 
             f'connect sent: steam://connect/{list[1]}/{list[2]}')               # wait for msg to be sent correctly
     else:
         await message.channel.send(                                             # if msg is formatted wrong, send this
-            'it appears the submitted info is not formatted correctly, be sure to submit in the form of "!aconnect [ip:port] [password]"'
+            'it appears the submitted info is not formatted correctly, be sure to submit in the form of "!connect [ip:port] [password]"'
         )
