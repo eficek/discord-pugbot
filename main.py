@@ -6,6 +6,7 @@ from connect import send_connect
 from endpug import teams_to_picking
 from fatkid import post_fatkids
 from keep_alive import keep_alive
+from consolidate import consolidate_pugs
 
 # import timeout
 
@@ -18,6 +19,7 @@ async def on_ready():
 
     # this is so ugly, i need to brush up on py
 
+    # TODO: Run these commands at command time, might solve bug where cannot move players in channel prior
     global GUILD, TEST_VC, BLU_VC, RED_VC, BLU_VC_2, RED_VC_2, PICKING_VC, PICKING_VC_2, CLOWN_CAR, ANNOUNCE
     GUILD = client.guilds[0]
     TEST_VC = GUILD.get_channel(658490352189046788)  # applies channel ID's - IF A CHANNEL GETS DELETED FIX THIS
@@ -31,6 +33,11 @@ async def on_ready():
     ANNOUNCE = GUILD.get_channel(727395194714193980)
     # DLPHN = await GUILD.fetch_member(233036215610245120)
     # GRRT = await GUILD.fetch_member(115328914552782857)
+    # Rebel = await GUILD.fetch_member(160225394526519296)
+
+
+
+
 
 # --------------------------------------------------------------------------------------------------------------------------
 # begin msg definitions
@@ -55,6 +62,8 @@ async def on_message(message):
             await teams_to_picking(message, RED_VC, BLU_VC, PICKING_VC)
         elif message.content.startswith('!endbpug'):  # ends B pugs
             await teams_to_picking(message, RED_VC_2, BLU_VC_2, PICKING_VC_2)
+        elif message.content.startswith('!consolidate'):
+            await consolidate_pugs(message, PICKING_VC, PICKING_VC_2)
         elif message.content.startswith('!fatkids') or message.content.startswith('!fk'):  # sends fatkids msg
             await post_fatkids(message, PICKING_VC, ANNOUNCE, GUILD)
         elif message.content.startswith('!timeout'):
