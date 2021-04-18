@@ -8,4 +8,6 @@ Commands:
 
 !endbpug - moves players from b team channels to picking
 
+!consolidate - Combines A picking and B picking
+
 !fk, !fatkids - sends a formatted list of fatkids to the pug announce channel
