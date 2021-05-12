@@ -1,5 +1,6 @@
 from threading import Thread
 
+import discord
 from flask import Flask
 
 app = Flask('')
@@ -14,3 +15,10 @@ def run():
 def keep_alive():
     t = Thread(target=run)
     t.start()
+
+async def clear_testing_dms():
+    client = discord.Client()
+    messages_to_remove = 1000
+    async for message in client.get_channel(829249725021814784).history(limit=messages_to_remove):
+        if message.author.id == client.user.id:
+            await message.delete()
