@@ -1,6 +1,5 @@
 from threading import Thread
 
-import discord
 from flask import Flask
 
 app = Flask('')

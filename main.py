@@ -5,7 +5,7 @@ import discord
 from connect import send_connect
 from endpug import teams_to_picking
 from fatkid import post_fatkids
-from keep_alive import keep_alive, clear_testing_dms
+from keep_alive import keep_alive
 from consolidate import consolidate_pugs
 
 # import timeout
@@ -79,7 +79,7 @@ async def on_message(message):
                     await message.delete()
         else:
             await message.channel.send('Report Submitted.', delete_after=30)
-            await REPORT_CHANNEL.send(message.content)
+            await REPORT_CHANNEL.send(f'{message.author}: {message.content}')
 
 
 keep_alive()  # abuses free system for gain
