@@ -79,7 +79,7 @@ async def on_message(message):
                     await message.delete()
         else:
             await message.channel.send('Report Submitted.', delete_after=30)
-            await REPORT_CHANNEL.send(f'{message.author}: {message.content}')
+            await REPORT_CHANNEL.send(f'{message.author.name}: {message.content}')
 
 
 keep_alive()  # abuses free system for gain
