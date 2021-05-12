@@ -1,4 +1,4 @@
-# Sends players from channels team1 and team2 to channel picking
+# Sends players from picking b channel to main picking
 async def consolidate_pugs(message, picking_a, picking_b):
     for user in picking_b.members:
         try:
